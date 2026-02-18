@@ -4,7 +4,6 @@ import { dark } from "@clerk/themes";
 import { Inter } from "next/font/google";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { PageTransition } from "@/components/motion";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -28,9 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             disableTransitionOnChange
           >
             <Navbar />
-            <main className="container mx-auto px-4 py-6">
-              <PageTransition>{children}</PageTransition>
-            </main>
+            <main className="container mx-auto px-4 py-6">{children}</main>
           </ThemeProvider>
         </body>
       </html>

@@ -8,6 +8,8 @@ import { RideCard } from "@/components/ride-card";
 import { RideFilters } from "@/components/ride-filters";
 import { Button } from "@/components/ui/button";
 import { getRides } from "@/actions/rides";
+import { FadeIn } from "@/components/motion";
+
 type Props = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 };
@@ -84,7 +86,7 @@ async function RideList({ searchParams }: Props) {
 export default async function HomePage(props: Props) {
   return (
     <BilkentGate>
-      <div className="mb-8 flex items-center justify-between">
+      <FadeIn className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Available Rides</h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -97,7 +99,7 @@ export default async function HomePage(props: Props) {
             New Ride
           </Link>
         </Button>
-      </div>
+      </FadeIn>
 
       <Suspense fallback={<div className="text-sm text-muted-foreground">Loading filters...</div>}>
         <RideFilters />
