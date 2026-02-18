@@ -2,7 +2,6 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -67,12 +66,7 @@ export default function NewRidePage() {
   const minDateStr = minDate.toISOString().slice(0, 16);
 
   return (
-    <motion.div
-      className="mx-auto max-w-2xl"
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
+    <div className="mx-auto max-w-2xl">
       <Card>
         <CardHeader>
           <CardTitle>Create a New Ride</CardTitle>
@@ -276,6 +270,6 @@ export default function NewRidePage() {
           </form>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

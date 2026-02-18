@@ -1,95 +1,37 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-export const fadeIn = {
-  initial: { opacity: 0, y: 8 },
+const pageVariants = {
+  initial: { opacity: 0, y: 6 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+  exit: { opacity: 0, y: -4 },
 };
 
-export const staggerContainer = {
-  animate: { transition: { staggerChildren: 0.06 } },
+const pageTransition = {
+  duration: 0.3,
+  ease: [0.25, 0.46, 0.45, 0.94] as const,
 };
 
-export const fadeInItem = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
-};
+export function PageTransition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
 
-export function FadeIn({
-  children,
-  className,
-  delay = 0,
-  ...props
-}: { children: React.ReactNode; delay?: number } & HTMLMotionProps<"div">) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={className}
-      {...props}
-    >
-      {children}
-    </motion.div>
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={pathname}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={pageTransition}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
-export function StaggerList({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function StaggerItem({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <motion.div variants={fadeInItem} className={className}>
-      {children}
-    </motion.div>
-  );
-}
-
-export function ScaleIn({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export { motion };
+export { motion, AnimatePresence };

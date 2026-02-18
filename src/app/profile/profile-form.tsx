@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,12 +40,7 @@ export function ProfileForm({ initialData }: Props) {
   }
 
   return (
-    <motion.div
-      className="mx-auto max-w-xl"
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
+    <div className="mx-auto max-w-xl">
       <Card>
         <CardHeader>
           <CardTitle>My Profile</CardTitle>
@@ -126,6 +120,6 @@ export function ProfileForm({ initialData }: Props) {
           </form>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

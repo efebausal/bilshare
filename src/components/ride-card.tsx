@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import { MapPin, Clock, Users, Banknote, Shield } from "lucide-react";
-import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatDate, formatPrice } from "@/lib/utils";
@@ -31,14 +28,8 @@ export function RideCard({ ride }: RideCardProps) {
         : "secondary";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-      whileHover={{ y: -2 }}
-    >
     <Link href={`/rides/${ride.id}`}>
-      <Card className="transition-all hover:shadow-glow hover:border-primary/20">
+      <Card className="transition-all duration-200 hover:shadow-glow hover:border-primary/20 hover:-translate-y-0.5">
         <CardContent className="p-4">
           <div className="mb-3 flex items-start justify-between">
             <div className="flex-1 min-w-0">
@@ -87,6 +78,5 @@ export function RideCard({ ride }: RideCardProps) {
         </CardContent>
       </Card>
     </Link>
-    </motion.div>
   );
 }

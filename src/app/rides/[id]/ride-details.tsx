@@ -15,7 +15,6 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import Link from "next/link";
-import { FadeIn } from "@/components/motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -175,17 +174,14 @@ export function RideDetails({ ride, currentUserId }: Props) {
 
   return (
     <div className="mx-auto max-w-3xl space-y-4">
-      <FadeIn>
       <Button variant="ghost" size="sm" asChild>
         <Link href="/">
           <ArrowLeft className="mr-1 h-4 w-4" />
           Back to rides
         </Link>
       </Button>
-      </FadeIn>
 
       {/* Main ride info */}
-      <FadeIn delay={0.05}>
       <Card>
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
@@ -237,10 +233,8 @@ export function RideDetails({ ride, currentUserId }: Props) {
           )}
         </CardContent>
       </Card>
-      </FadeIn>
 
       {/* Driver info */}
-      <FadeIn delay={0.1}>
       <Card>
         <CardContent className="flex items-center gap-4 p-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
@@ -276,7 +270,6 @@ export function RideDetails({ ride, currentUserId }: Props) {
           )}
         </CardContent>
       </Card>
-      </FadeIn>
 
       {showReport && (
         <Card>
