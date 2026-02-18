@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String
+  phone     String?
+  carModel  String?
+  carPlate  String?
+  bio       String?
+  blocked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  rides         Ride[]
+  rideRequests  RideRequest[]
+  reportsFiled  Report[]       @relation("ReportFiler")
+  reportsAgainst Report[]      @relation("ReportTarget")
+  sentMessages  Message[]      @relation("MessageSender")
+
+  @@index([clerkId])
+  @@index([email])
+}
+
+enum RideStatus {
+  ACTIVE
+  FULL
+  COMPLETED
+  CANCELLED
+}
+
+model Ride {
+  id              String     @id @default(cuid())
+  driverId        String
+  driver          User       @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  origin          String
+  destination     String
+  dateTime        DateTime
+  seatsTotal      Int
+  seatsAvailable  Int
+  price           Float?
+  notes           String?
+  meetingPoint    String?
+  womenOnly       Boolean    @default(false)
+  status          RideStatus @default(ACTIVE)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  requests RideRequest[]
+  messages Message[]
+
+  @@index([origin])
+  @@index([destination])
+  @@index([dateTime])
+  @@index([status])
+  @@index([driverId])
+  @@index([origin, destination, dateTime])
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+model RideRequest {
+  id          String        @id @default(cuid())
+  rideId      String
+  ride        Ride          @relation(fields: [rideId], references: [id], onDelete: Cascade)
+  passengerId String
+  passenger   User          @relation(fields: [passengerId], references: [id], onDelete: Cascade)
+  seats       Int           @default(1)
+  status      RequestStatus @default(PENDING)
+  note        String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@unique([rideId, passengerId])
+  @@index([rideId])
+  @@index([passengerId])
+  @@index([status])
+}
+
+model Report {
+  id         String   @id @default(cuid())
+  filerId    String
+  filer      User     @relation("ReportFiler", fields: [filerId], references: [id], onDelete: Cascade)
+  targetId   String
+  target     User     @relation("ReportTarget", fields: [targetId], references: [id], onDelete: Cascade)
+  rideId     String?
+  reason     String
+  details    String?
+  createdAt  DateTime @default(now())
+
+  @@index([targetId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  rideId    String
+  ride      Ride     @relation(fields: [rideId], references: [id], onDelete: Cascade)
+  senderId  String
+  sender    User     @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([rideId, createdAt])
+}
