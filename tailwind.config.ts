@@ -39,11 +39,22 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        amber: {
+          glow: "hsl(32, 65%, 52%)",
+        },
+        brake: {
+          DEFAULT: "hsl(0, 55%, 50%)",
+          glow: "hsl(0, 55%, 45%)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        glow: "0 0 20px -5px hsl(32 65% 52% / 0.3), 0 0 40px -10px hsl(32 65% 52% / 0.15)",
+        "glow-red": "0 0 20px -5px hsl(0 55% 50% / 0.3), 0 0 40px -10px hsl(0 55% 50% / 0.15)",
       },
     },
   },

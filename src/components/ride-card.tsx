@@ -29,7 +29,7 @@ export function RideCard({ ride }: RideCardProps) {
 
   return (
     <Link href={`/rides/${ride.id}`}>
-      <Card className="transition-shadow hover:shadow-md">
+      <Card className="transition-all hover:shadow-glow hover:border-primary/20">
         <CardContent className="p-4">
           <div className="mb-3 flex items-start justify-between">
             <div className="flex-1 min-w-0">

@@ -10,11 +10,11 @@ export function Navbar() {
   const { isSignedIn } = useUser();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-b-primary/10 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <Car className="h-5 w-5 text-primary" />
-          <span>BilShare</span>
+          <Car className="h-5 w-5 text-primary drop-shadow-[0_0_6px_hsl(32,65%,52%,0.5)]" />
+          <span className="text-primary">BilShare</span>
         </Link>
 
         {isSignedIn && (

@@ -85,10 +85,10 @@ async function RideList({ searchParams }: Props) {
 export default async function HomePage(props: Props) {
   return (
     <BilkentGate>
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Available Rides</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-2xl font-bold tracking-tight">Available Rides</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             Find a ride or offer one to fellow Bilkent students
           </p>
         </div>
@@ -108,7 +108,7 @@ export default async function HomePage(props: Props) {
         fallback={
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-40 animate-pulse rounded-xl border bg-muted" />
+              <div key={i} className="h-40 animate-pulse rounded-xl border border-primary/5 bg-muted/50" />
             ))}
           </div>
         }

@@ -33,7 +33,7 @@ export default async function DashboardPage() {
   return (
     <BilkentGate>
       <div className="mx-auto max-w-4xl space-y-8">
-        <h1 className="text-2xl font-bold">My Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight">My Dashboard</h1>
 
         {/* Rides I created */}
         <section>
@@ -54,7 +54,7 @@ export default async function DashboardPage() {
             <div className="space-y-2">
               {createdRides.map((ride) => (
                 <Link key={ride.id} href={`/rides/${ride.id}`}>
-                  <Card className="transition-shadow hover:shadow-md">
+                  <Card className="transition-all hover:shadow-glow hover:border-primary/20">
                     <CardContent className="flex items-center justify-between p-4">
                       <div className="flex-1 min-w-0 space-y-1">
                         <div className="flex items-center gap-2 text-sm">
@@ -109,7 +109,7 @@ export default async function DashboardPage() {
             <div className="space-y-2">
               {joinedRequests.map((req) => (
                 <Link key={req.id} href={`/rides/${req.ride.id}`}>
-                  <Card className="transition-shadow hover:shadow-md">
+                  <Card className="transition-all hover:shadow-glow hover:border-primary/20">
                     <CardContent className="flex items-center justify-between p-4">
                       <div className="flex-1 min-w-0 space-y-1">
                         <div className="flex items-center gap-2 text-sm">

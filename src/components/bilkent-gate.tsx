@@ -12,7 +12,7 @@ export async function BilkentGate({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center px-4">
         <div className="mx-auto max-w-md text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10 shadow-glow-red">
             <span className="text-3xl">🚫</span>
           </div>
           <h2 className="mb-2 text-xl font-semibold">Bilkent Email Required</h2>
