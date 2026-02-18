@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getMyRides } from "@/actions/rides";
 import { formatDate, formatPrice } from "@/lib/utils";
+import { FadeIn } from "@/components/motion";
 
 function statusVariant(status: string) {
   switch (status) {
@@ -33,9 +34,12 @@ export default async function DashboardPage() {
   return (
     <BilkentGate>
       <div className="mx-auto max-w-4xl space-y-8">
+        <FadeIn>
         <h1 className="text-2xl font-bold tracking-tight">My Dashboard</h1>
+        </FadeIn>
 
         {/* Rides I created */}
+        <FadeIn delay={0.05}>
         <section>
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-lg font-semibold">Rides I Created</h2>
@@ -91,8 +95,10 @@ export default async function DashboardPage() {
             </div>
           )}
         </section>
+        </FadeIn>
 
         {/* Rides I joined */}
+        <FadeIn delay={0.1}>
         <section>
           <h2 className="mb-3 text-lg font-semibold">Rides I Joined</h2>
 
@@ -141,6 +147,7 @@ export default async function DashboardPage() {
             </div>
           )}
         </section>
+        </FadeIn>
       </div>
     </BilkentGate>
   );
